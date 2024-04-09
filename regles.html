@@ -15,9 +15,9 @@
             background-repeat: no-repeat;
             background-position: center;
             color: #ffffff;
-            height: 100vh;
+            min-height: 100vh; /* Use min-height instead of height */
             backdrop-filter: blur(10px);
-            overflow: hidden;
+            overflow: auto; /* Enable scrolling */
         }
         header {
             background-color: rgba(0, 0, 0, 0.5);
@@ -32,17 +32,15 @@
             margin: 10px;
             flex-wrap: wrap;
             margin-left: 2cm;
-            height: 80vh; /* Set height for scrolling */
-            overflow-y: auto; /* Enable vertical scrolling */
+            gap: 2cm; /* Add gap between rule boxes */
         }
         .rule {
-            width: 250px;
+            width: calc(33.33% - 1cm); /* Set width for each rule box */
             padding: 20px;
             border-radius: 20px;
             background-color: rgba(255, 255, 255, 0.1);
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-right: 2cm;
             margin-top: 3cm;
         }
         footer {
@@ -72,28 +70,6 @@
         }
         .tab:hover {
             background-color: rgba(255, 255, 255, 0.1);
-        }
-        .rules-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 50px;
-        }
-        .rule-box {
-            flex: 1;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
-            padding: 20px;
-            margin: 200px;
-            margin-right: 10;
-        }
-        h2 {
-            padding-bottom: 10px;
-        }
-        p {
-            margin-top: 10px;
-        }
-        .rule-box:last-child {
-          margin-right: 0;
         }
     </style>
 </head>
