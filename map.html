@@ -18,8 +18,6 @@
             height: 100vh;
             backdrop-filter: blur(2px);
             overflow: hidden;
-            overflow-x: hidden;
-            overflow-y: hidden;
         }
         header {
             background-color: #000000;
@@ -31,10 +29,8 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            overflow-x: hidden; /* Enable horizontal scrolling */
+            overflow-x: auto; /* Enable horizontal scrolling */
             height: 80vh;
-            overflow-x: hidden;
-            overflow-y: hidden;
         }
         .card {
             width: 990px;
@@ -67,16 +63,15 @@
             max-height: 100%;
             border-radius: 20px;
         }
-         footer {
+        footer {
+            background-color: rgba(0, 0, 0, 0);
+            color:#000000;
+            text-decoration:dashed;
+            padding: 10px;
+            text-align: right;
             position: fixed;
             bottom: 0;
-            right: 0px;
-            left: 0;
-            text-align: right;
-            background-color: rgba(0, 0, 0, 0);
-            padding: 20px;
-            z-index: 999;
-        }
+            width: 100%;
         }
         #logo {
             position: absolute;
