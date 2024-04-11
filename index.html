@@ -114,6 +114,59 @@
             height: 100%;
             object-fit: cover;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #333;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #acceptBtn {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #acceptBtn:hover {
+            background-color: #45a049;
+        }
+
+
+    
 
         @media screen and (max-width: 768px) {
             .rule-box {
@@ -169,7 +222,33 @@
     const startButton = document.getElementById('startButton');
     const cards = document.querySelectorAll('.card');
     const resultDisplay = document.getElementById('result');
+    const modal = document.getElementById("myModal");
+    const span = document.getElementsByClassName("close")[0];
+    const acceptBtn = document.getElementById("acceptBtn");
 
+    // Afficher la fenêtre modale lorsque la page est chargée
+    window.onload = function() {
+        modal.style.display = "block";
+    }
+
+    // Fermer la fenêtre modale lorsque l'utilisateur clique sur le bouton Accepter
+    acceptBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Fermer la fenêtre modale lorsque l'utilisateur clique sur le bouton de fermeture (×)
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Fermer la fenêtre modale lorsque l'utilisateur clique en dehors de celle-ci
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Gérer l'événement du bouton de démarrage
     startButton.addEventListener('click', () => {
         const winnerIndex = Math.floor(Math.random() * 3);
         const degrees = [360, 720, 1080];
