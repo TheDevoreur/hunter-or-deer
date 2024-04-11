@@ -210,8 +210,13 @@
     <button id="startButton">Start</button>
     <div id="result"></div>
 </main>
+
+<footer>
+    <p>© 2024 VIRTUAL HUNT. By Rayan.</p>
+</footer>
+
 <!-- Fenêtre modale pour les conditions d'utilisation -->
-<div id="myModal" class="modal"> <!-- Ajoutez la classe modal ici -->
+<div id="myModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Terms of Use</h2>
@@ -219,10 +224,6 @@
         <button id="acceptBtn">Accept</button>
     </div>
 </div>
-
-<footer>
-    <p>© 2024 VIRTUAL HUNT. By Rayan.</p>
-</footer>
 
 <script>
     const startButton = document.getElementById('startButton');
@@ -232,14 +233,51 @@
     const span = document.getElementsByClassName("close")[0];
     const acceptBtn = document.getElementById("acceptBtn");
 
-    // Afficher la fenêtre modale lorsque la page est chargée
+    // Vérifier si le cookie d'acceptation est présent
+    const acceptedCookie = getCookie("modalAccepted");
+
+    // Si le cookie d'acceptation est présent, masquer la fenêtre modale
+    if (acceptedCookie) {
+        modal.style.display = "none";
+    }
+
+    // Fonction pour définir un cookie
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        const expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    // Fonction pour récupérer un cookie
+    function getCookie(cname) {
+        const name = cname + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const ca = decodedCookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    // Afficher la fenêtre modale lorsque la page est chargée, sauf si elle a déjà été acceptée
     window.onload = function() {
-        modal.style.display = "block";
+        if (!acceptedCookie) {
+            modal.style.display = "block";
+        }
     }
 
     // Fermer la fenêtre modale lorsque l'utilisateur clique sur le bouton Accepter
     acceptBtn.onclick = function() {
         modal.style.display = "none";
+        // Enregistrer le cookie d'acceptation pendant 365 jours
+        setCookie("modalAccepted", "true", 365);
     }
 
     // Fermer la fenêtre modale lorsque l'utilisateur clique sur le bouton de fermeture (×)
